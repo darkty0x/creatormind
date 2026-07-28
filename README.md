@@ -3,23 +3,26 @@
 Production creator OS for **Creative Minds Jam #1** (Animoca Minds).
 
 **Mind:** [ShowRunner](https://app.hellominds.ai/?mindId=a130523e-f36b-1410-8465-00039ce7df11)  
+**Live web:** https://web-production-c0a0b2.up.railway.app  
+**Live API:** https://api-production-428c.up.railway.app  
 **Telegram (open DM):** [@showrunner_mind_bot](https://t.me/showrunner_mind_bot)  
 **Hackathon:** https://dorahacks.io/hackathon/creativeminds  
+**GitHub:** https://github.com/darkty0x/creatormind  
 
 ## Requirements checklist (official)
 
 | Requirement | Status |
 |-------------|--------|
-| Working product with Mind integral | ShowRunner identity + digests + web/Telegram ops |
-| Memory across sessions | Durable store (`DATA_DIR`) |
-| Continuity | Goals + jobs resume; audit trail |
+| Working product with Mind integral | ShowRunner + Live web/API/Telegram |
+| Memory across sessions | Durable `/data` volume on Railway |
+| Continuity | Goals + jobs + audit trail |
 | Autonomous follow-up | Cron scheduler + Telegram digests |
 | Creator-economy track fit | Repurpose / Growth / Moderation |
-| GitHub + docs | This repo |
-| Demo video (1.5–2 min) | Record against Live URL after deploy |
-| Live website | Recommended for judges (Railway) — not strictly listed as mandatory |
+| GitHub + docs | https://github.com/darkty0x/creatormind |
+| Demo video (1.5–2 min) | **Still needed** — record against Live URL |
+| Live website | https://web-production-c0a0b2.up.railway.app |
 
-Official submit fields require **GitHub** + **Demo video**. A live site is strongly recommended under “working product / execution.”
+Official submit fields require **GitHub** + **Demo video**. Live site is strongly recommended for “working product / execution.”
 
 ## Modes
 
