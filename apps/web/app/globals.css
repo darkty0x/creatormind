@@ -1,0 +1,60 @@
+:root {
+  --ink: #0b1220;
+  --muted: #5a6577;
+  --paper: #e8eef6;
+  --surface: #f7f9fc;
+  --line: #c9d3e2;
+  --accent: #0b7f8a;
+  --accent-deep: #065a62;
+  --signal: #e85d04;
+  --danger: #b42318;
+  --ok: #0b7f8a;
+  --font-display: "Syne", "Avenir Next", sans-serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  color: var(--ink);
+  font-family: var(--font-body);
+  background: var(--paper);
+}
+
+body {
+  background:
+    radial-gradient(90% 70% at 0% 0%, rgba(11, 127, 138, 0.18), transparent 55%),
+    radial-gradient(70% 50% at 100% 10%, rgba(232, 93, 4, 0.1), transparent 50%),
+    linear-gradient(180deg, #dfe8f3 0%, var(--paper) 42%, #edf2f8 100%);
+  background-attachment: fixed;
+}
+
+a {
+  color: var(--accent-deep);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(11, 127, 138, 0.22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
