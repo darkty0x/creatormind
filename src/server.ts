@@ -66,7 +66,7 @@ app.get("/api/health", (_req, res) => {
     product: "CreatorMind",
     mind: config.mindsName ?? "ShowRunner",
     killSwitch: config.killSwitch,
-    build: "creatormind-v1",
+    build: "creatormind-v2",
   });
 });
 
