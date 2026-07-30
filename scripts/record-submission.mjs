@@ -49,7 +49,9 @@ async function card(title, sub, secs = 4) {
 async function main() {
   for (const f of [OUT_WEBM, OUT_MP4]) if (existsSync(f)) unlinkSync(f);
   await pw("close").catch(() => {});
-  await pw("open", APP, "--viewport", "1440x900");
+  await pw("open", APP);
+  await sleep(2000);
+  await pw("resize", "1440", "900");
   await sleep(4000);
   await pw("video-start", OUT_WEBM);
 
