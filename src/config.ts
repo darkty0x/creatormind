@@ -33,5 +33,6 @@ export function loadConfig(): AppConfig {
       .filter(Boolean),
     schedulerCron: process.env.SCHEDULER_CRON ?? "*/5 * * * *",
     apiKey: process.env.API_KEY || undefined,
+    telegramWebhookSecret: process.env.TELEGRAM_WEBHOOK_SECRET || undefined,
   };
 }

@@ -1,4 +1,11 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync, appendFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  writeFileSync,
+  appendFileSync,
+  renameSync,
+} from "node:fs";
 import { join } from "node:path";
 import { randomUUID } from "node:crypto";
 import type {
@@ -80,7 +87,13 @@ export class Store {
   }
 
   private persist(db = this.db) {
-    writeFileSync(this.path, JSON.stringify(db, null, 2));
+    // Keep stores bounded for long-running Railway volumes.
+    if (db.memory.length > 400) db.memory = db.memory.slice(-400);
+    if (db.jobs.length > 200) db.jobs = db.jobs.slice(0, 200);
+    if (db.goals.length > 100) db.goals = db.goals.slice(0, 100);
+    const tmp = `${this.path}.${process.pid}.tmp`;
+    writeFileSync(tmp, JSON.stringify(db, null, 2));
+    renameSync(tmp, this.path);
   }
 
   getProfile() {

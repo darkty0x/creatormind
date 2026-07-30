@@ -4,24 +4,23 @@ Deadline: **2026-08-28 23:59 HKT**
 
 ## Official must-haves
 
-1. Working product with **Minds agent integral** → ShowRunner Mind + product ops  
-2. Persistence demo (memory / continuity / autonomous follow-up) → store + scheduler + Telegram  
-3. Creator-economy track fit → Repurpose (submit label) + Growth + Moderation  
-4. **Demo video** 1.5–2 min → after Live deploy  
-5. **Code repository** + docs → GitHub  
+| Requirement | Status |
+|-------------|--------|
+| Working product with Minds agent integral | ShowRunner linked; digests + product loop. Decide/act run in CreatorMind (LLM when `OPENAI_API_KEY` set). |
+| Persistence (memory / continuity / autonomous follow-up) | `/data` volume + goals/jobs/audit + scheduler |
+| Creator-economy track fit | Repurpose (submit) + Growth + Moderation |
+| Demo video 1.5–2 min | **Record against Live** (see `docs/demo-script.md`) |
+| Code repository + docs | https://github.com/darkty0x/creatormind |
 
-## DoraHacks form notes
+## Live
 
-- Profile **GitHub** + **Demo video** are required on the hackathon page.  
-- **Project website** is not listed as a hard requirement, but judges score execution/UX — ship a Live Railway URL.  
-- Telegram bot alone is not enough for a strong “working product” score.
+- Web: https://web-production-c0a0b2.up.railway.app  
+- API: https://api-production-428c.up.railway.app  
+- Telegram: https://t.me/showrunner_mind_bot  
+- Mind: https://app.hellominds.ai/?mindId=a130523e-f36b-1410-8465-00039ce7df11  
 
-## Still to finish before submit
+## Honest notes for judges
 
-- [ ] GitHub public repo  
-- [ ] Railway Live API + Web  
-- [ ] Demo video against Live  
-- [ ] BUIDL Profile / Details / Team / Submission filled  
-
-Mind: https://app.hellominds.ai/?mindId=a130523e-f36b-1410-8465-00039ce7df11  
-Bot: https://t.me/showrunner_mind_bot
+- Animoca Minds has no public embed SDK for custom decide/act; ShowRunner is the persistent Mind identity and notify surface.  
+- Generation uses OpenAI when configured; otherwise deterministic heuristics (still draft-only, audited).  
+- Open Telegram DMs for testers; cycle endpoint rate-limited.

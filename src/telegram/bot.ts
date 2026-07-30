@@ -87,6 +87,8 @@ export function createTelegramBot(config: AppConfig, store: Store) {
   return bot;
 }
 
-export function telegramWebhook(bot: Bot) {
-  return webhookCallback(bot, "express");
+export function telegramWebhook(bot: Bot, secretToken?: string) {
+  return webhookCallback(bot, "express", {
+    secretToken: secretToken || undefined,
+  });
 }

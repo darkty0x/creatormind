@@ -1,5 +1,6 @@
 import type { AppConfig, Decision, ModeOutput, Observation } from "./types.js";
 import type { Store } from "./store.js";
+import { chatJson } from "./llm.js";
 
 function clip(text: string, n = 280) {
   const t = text.trim().replace(/\s+/g, " ");
@@ -14,12 +15,12 @@ function claimFrom(source: string) {
   return clip(line ?? source, 160);
 }
 
-export async function act(
+function heuristicAct(
   config: AppConfig,
   store: Store,
   observation: Observation,
   decision: Decision,
-): Promise<ModeOutput> {
+): ModeOutput {
   const voice = observation.profile.brandVoice;
   const source = observation.sourceContent?.trim() ?? "";
   const comments = observation.commentsSnapshot?.trim() ?? "";
@@ -148,5 +149,97 @@ export async function act(
     mode: "moderation",
     text: `Moderation pass: ${flags.filter((f) => f.severity !== "info").length} flagged`,
   });
+  return output;
+}
+
+type LlmAct = {
+  summary?: string;
+  drafts?: Array<{ channel?: string; title?: string; body?: string }>;
+  actions?: Array<{ label?: string; detail?: string }>;
+  flags?: Array<{ severity?: string; text?: string }>;
+};
+
+export async function act(
+  config: AppConfig,
+  store: Store,
+  observation: Observation,
+  decision: Decision,
+): Promise<ModeOutput> {
+  const fallback = heuristicAct(config, store, observation, decision);
+  if (!config.openaiApiKey) return fallback;
+
+  const memory = observation.recentMemory
+    .slice(0, 8)
+    .map((m) => `- [${m.kind}] ${m.text}`)
+    .join("\n");
+
+  const generated = await chatJson<LlmAct>(config, [
+    {
+      role: "system",
+      content:
+        "You are ShowRunner. Produce creator-ready drafts. Return JSON: summary (string), drafts (array of {channel,title,body}), actions (array of {label,detail}), optional flags (array of {severity: info|warn|critical, text}). Draft-only — never claim you published. Match brand voice. Keep bodies concrete and usable.",
+    },
+    {
+      role: "user",
+      content: JSON.stringify({
+        mode: decision.mode,
+        plan: decision.plan,
+        rationale: decision.rationale,
+        brandVoice: observation.profile.brandVoice,
+        platforms: observation.profile.platforms,
+        norms: observation.profile.communityNorms,
+        goal: observation.goal,
+        sourceContent: observation.sourceContent?.slice(0, 3500) ?? null,
+        commentsSnapshot: observation.commentsSnapshot?.slice(0, 2500) ?? null,
+        memory,
+        allowAutoPublish: config.allowAutoPublish,
+      }),
+    },
+  ]);
+
+  if (!generated?.drafts?.length) return fallback;
+
+  const output: ModeOutput = {
+    mode: decision.mode,
+    summary: generated.summary?.trim() || fallback.summary,
+    drafts: generated.drafts
+      .filter((d) => d?.body)
+      .slice(0, 6)
+      .map((d) => ({
+        channel: String(d.channel ?? "draft"),
+        title: String(d.title ?? "Draft"),
+        body: String(d.body),
+      })),
+    actions: (generated.actions ?? fallback.actions)
+      .filter((a) => a?.label)
+      .slice(0, 6)
+      .map((a) => ({
+        label: String(a.label),
+        detail: String(a.detail ?? ""),
+      })),
+    flags: (generated.flags ?? fallback.flags)
+      ?.filter((f) => f?.text)
+      .slice(0, 12)
+      .map((f) => {
+        const severity =
+          f.severity === "critical" || f.severity === "warn" || f.severity === "info"
+            ? f.severity
+            : "info";
+        return { severity, text: String(f.text) };
+      }),
+  };
+
+  store.addMemory({
+    kind: decision.mode === "moderation" ? "moderation" : decision.mode === "growth" ? "audience" : "content",
+    mode: decision.mode,
+    text: `LLM ${decision.mode}: ${output.summary}`,
+  });
+  if (!config.allowAutoPublish) {
+    store.addMemory({
+      kind: "decision",
+      mode: decision.mode,
+      text: "Publish blocked by policy — drafts only until ALLOW_AUTO_PUBLISH=1",
+    });
+  }
   return output;
 }

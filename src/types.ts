@@ -124,4 +124,5 @@ export interface AppConfig {
   corsOrigins: string[];
   schedulerCron: string;
   apiKey?: string;
+  telegramWebhookSecret?: string;
 }

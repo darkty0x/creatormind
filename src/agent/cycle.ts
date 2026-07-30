@@ -25,7 +25,7 @@ export async function runCycle(opts: {
     commentsSnapshot: opts.commentsSnapshot,
   });
 
-  const decision = await decide(observation);
+  const decision = await decide(observation, config);
   const policy = checkPolicy(config, store, observation, decision);
 
   const job = store.createJob({

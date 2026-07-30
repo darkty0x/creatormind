@@ -28,6 +28,27 @@ app.use(
 );
 app.use(express.json({ limit: "1mb" }));
 
+const cycleHits = new Map<string, { n: number; reset: number }>();
+function rateLimitCycle(
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
+) {
+  const ip = req.ip || req.socket.remoteAddress || "unknown";
+  const now = Date.now();
+  const row = cycleHits.get(ip) ?? { n: 0, reset: now + 60_000 };
+  if (now > row.reset) {
+    row.n = 0;
+    row.reset = now + 60_000;
+  }
+  row.n += 1;
+  cycleHits.set(ip, row);
+  if (row.n > 20) {
+    return res.status(429).json({ error: "Too many runs — try again shortly" });
+  }
+  return next();
+}
+
 function requireKey(
   req: express.Request,
   res: express.Response,
@@ -108,7 +129,7 @@ app.post("/api/goals", requireKey, (req, res) => {
   res.json({ goal });
 });
 
-app.post("/api/cycle", requireKey, async (req, res, next) => {
+app.post("/api/cycle", requireKey, rateLimitCycle, async (req, res, next) => {
   try {
     const mode = req.body?.mode as Mode | undefined;
     const result = await runCycle({
@@ -134,12 +155,19 @@ const publicApi = process.env.PUBLIC_API_URL?.replace(/\/$/, "");
 async function registerTelegramWebhook() {
   if (!bot || !config.telegramBotToken || !publicApi) return;
   const hook = `${publicApi}/telegram/webhook`;
+  const payload: Record<string, unknown> = {
+    url: hook,
+    drop_pending_updates: false,
+  };
+  if (config.telegramWebhookSecret) {
+    payload.secret_token = config.telegramWebhookSecret;
+  }
   const res = await fetch(
     `https://api.telegram.org/bot${config.telegramBotToken}/setWebhook`,
     {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ url: hook, drop_pending_updates: false }),
+      body: JSON.stringify(payload),
     },
   );
   const body = await res.json();
@@ -152,7 +180,10 @@ if (bot) {
       onStart: () => console.log("[telegram] polling as @showrunner_mind_bot"),
     });
   } else {
-    app.post("/telegram/webhook", telegramWebhook(bot));
+    app.post(
+      "/telegram/webhook",
+      telegramWebhook(bot, config.telegramWebhookSecret),
+    );
     console.log("[telegram] webhook route /telegram/webhook");
     registerTelegramWebhook().catch((err) =>
       console.error("[telegram] webhook register failed", err),

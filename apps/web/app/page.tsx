@@ -156,6 +156,9 @@ export default function HomePage() {
             <p className={styles.product}>CreatorMind · Animoca Minds</p>
           </div>
           <nav className={styles.nav} aria-label="Links">
+            <a href="https://github.com/darkty0x/creatormind" target="_blank" rel="noreferrer">
+              Code
+            </a>
             <a href="https://dorahacks.io/hackathon/creativeminds" target="_blank" rel="noreferrer">
               Hackathon
             </a>
@@ -188,7 +191,8 @@ export default function HomePage() {
             </a>
           </div>
           <p className={styles.metaLine}>
-            Open DMs for testers · {minds?.knownTesters ?? 0} known · Last success{" "}
+            Open DMs for testers · {minds?.knownTesters ?? 0} known
+            {minds?.llmEnabled ? " · LLM on" : " · heuristic mode"} · Last success{" "}
             {status?.meta?.lastSuccessAt
               ? new Date(status.meta.lastSuccessAt).toLocaleString()
               : "—"}
@@ -362,6 +366,10 @@ export default function HomePage() {
           Mind{" "}
           <a href={minds?.profileUrl} target="_blank" rel="noreferrer">
             {minds?.name ?? "ShowRunner"}
+          </a>{" "}
+          ·{" "}
+          <a href="https://github.com/darkty0x/creatormind" target="_blank" rel="noreferrer">
+            GitHub
           </a>{" "}
           · open DMs on{" "}
           <a href={telegramHref} target="_blank" rel="noreferrer">

@@ -25,7 +25,7 @@ async function sendTelegram(
   return { ok: true as const, chatId };
 }
 
-/** Animoca Minds bridge — open DMs: notify requester or all known testers. */
+/** Animoca Minds bridge — ShowRunner identity + Telegram digests into known DMs. */
 export async function notifyMind(
   config: AppConfig,
   store: Store,
@@ -46,6 +46,7 @@ export async function notifyMind(
     text: `Mind digest queued: ${payload.title} → ${targets.join(",") || "no-chat"}`,
     meta: {
       mindsProfileUrl: profile.mindsProfileUrl ?? config.mindsProfileUrl,
+      mindsId: profile.mindsId ?? config.mindsId,
       targets,
     },
   });
@@ -65,8 +66,18 @@ export async function notifyMind(
 export function mindsStatus(config: AppConfig, store: Store) {
   const profile = store.getProfile();
   const chats = store.listTelegramChats();
+  const linked = Boolean(
+    profile.mindsId ??
+      config.mindsId ??
+      profile.mindsProfileUrl ??
+      config.mindsProfileUrl,
+  );
+  const notifyReady = Boolean(config.telegramBotToken) && chats.length > 0;
   return {
-    integral: true,
+    // Honest: ShowRunner is linked and digests flow through the product loop.
+    // Not claiming Hellominds hosted runtime executes decide/act.
+    linked,
+    operational: linked && (notifyReady || Boolean(config.openaiApiKey)),
     name: profile.mindsName ?? config.mindsName ?? "ShowRunner",
     id: profile.mindsId ?? config.mindsId ?? null,
     profileUrl: profile.mindsProfileUrl ?? config.mindsProfileUrl ?? null,
@@ -75,7 +86,8 @@ export function mindsStatus(config: AppConfig, store: Store) {
     knownTesters: chats.length,
     notifyChatId: config.mindsNotifyChatId ?? profile.telegramChatId ?? null,
     bot: "@showrunner_mind_bot",
+    llmEnabled: Boolean(config.openaiApiKey),
     setup:
-      "Anyone can DM @showrunner_mind_bot — /start then /run. No channel required.",
+      "ShowRunner Mind linked. Testers DM @showrunner_mind_bot (/start, /run). Digests + memory live in CreatorMind.",
   };
 }
