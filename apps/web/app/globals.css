@@ -1,17 +1,24 @@
 :root {
-  --ink: #0b1220;
-  --muted: #5a6577;
-  --paper: #e8eef6;
-  --surface: #f7f9fc;
-  --line: #c9d3e2;
-  --accent: #0b7f8a;
-  --accent-deep: #065a62;
-  --signal: #e85d04;
+  --navy: #0a1628;
+  --navy-mid: #12233a;
+  --ink: #0e1a2b;
+  --muted: #5c6b7e;
+  --paper: #f3f6fa;
+  --surface: #ffffff;
+  --line: #d5dde8;
+  --line-strong: #b8c4d4;
+  --teal: #1aa8b5;
+  --teal-deep: #0e7f8a;
+  --teal-soft: rgba(26, 168, 181, 0.12);
+  --warn: #c45c1a;
   --danger: #b42318;
-  --ok: #0b7f8a;
-  --font-display: "Syne", "Avenir Next", sans-serif;
-  --font-body: "Manrope", system-ui, sans-serif;
+  --ok: #1aa8b5;
+  --font-display: "Sora", "Avenir Next", sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --radius: 10px;
+  --shadow: 0 18px 50px rgba(10, 22, 40, 0.08);
 }
 
 * {
@@ -25,18 +32,16 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   background: var(--paper);
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
   background:
-    radial-gradient(90% 70% at 0% 0%, rgba(11, 127, 138, 0.18), transparent 55%),
-    radial-gradient(70% 50% at 100% 10%, rgba(232, 93, 4, 0.1), transparent 50%),
-    linear-gradient(180deg, #dfe8f3 0%, var(--paper) 42%, #edf2f8 100%);
-  background-attachment: fixed;
+    linear-gradient(180deg, #0a1628 0%, #0a1628 42%, #eef3f8 42%, #eef3f8 100%);
 }
 
 a {
-  color: var(--accent-deep);
+  color: var(--teal-deep);
 }
 
 button,
@@ -47,7 +52,7 @@ select {
 }
 
 ::selection {
-  background: rgba(11, 127, 138, 0.22);
+  background: rgba(26, 168, 181, 0.25);
 }
 
 @media (prefers-reduced-motion: reduce) {

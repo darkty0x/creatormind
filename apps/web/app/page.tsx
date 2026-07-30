@@ -146,21 +146,21 @@ export default function HomePage() {
 
   return (
     <div className={styles.page}>
-      <header className={styles.hero}>
-        <div className={styles.heroGlow} aria-hidden />
+      <div className={styles.shell}>
         <div className={styles.top}>
-          <div className={styles.brandBlock}>
-            <p className={styles.brand}>
-              Show<span className={styles.brandMark}>Runner</span>
-            </p>
-            <p className={styles.product}>CreatorMind · Animoca Minds</p>
-          </div>
+          <a className={styles.brandLockup} href="/">
+            <img src="/showrunner-mark.png" alt="" width={40} height={40} />
+            <div className={styles.brandText}>
+              <p className={styles.brandName}>ShowRunner</p>
+              <p className={styles.brandSub}>CreatorMind</p>
+            </div>
+          </a>
           <nav className={styles.nav} aria-label="Links">
             <a href="https://github.com/darkty0x/creatormind" target="_blank" rel="noreferrer">
               Code
             </a>
             <a href="https://dorahacks.io/hackathon/creativeminds" target="_blank" rel="noreferrer">
-              Hackathon
+              Jam
             </a>
             <a
               href={minds?.profileUrl ?? "https://app.hellominds.ai"}
@@ -176,35 +176,45 @@ export default function HomePage() {
           </nav>
         </div>
 
-        <div className={styles.heroCopy}>
-          <h1>Your creator ops Mind that remembers — and follows up.</h1>
-          <p>
-            Repurpose, grow, and moderate from one persistent ShowRunner. Web and Telegram share
-            memory. Drafts only until you approve publish.
-          </p>
-          <div className={styles.ctaRow}>
-            <button type="button" className={styles.primary} onClick={scrollToWork}>
-              Open workbench
-            </button>
-            <a className={styles.ghost} href={telegramHref} target="_blank" rel="noreferrer">
-              DM @showrunner_mind_bot
-            </a>
+        <header className={styles.hero}>
+          <div className={styles.heroCopy}>
+            <p className={styles.kicker}>Animoca Mind · creator ops</p>
+            <h1>Memory that keeps your show running.</h1>
+            <p>
+              One Mind for repurpose, growth, and moderation — shared across web and Telegram, with
+              follow-ups that don’t reset every session.
+            </p>
+            <div className={styles.ctaRow}>
+              <button type="button" className={styles.primary} onClick={scrollToWork}>
+                Open console
+              </button>
+              <a className={styles.ghost} href={telegramHref} target="_blank" rel="noreferrer">
+                Telegram bot
+              </a>
+            </div>
+            <p className={styles.metaLine}>
+              open DMs · {minds?.knownTesters ?? 0} testers
+              {minds?.llmEnabled ? " · llm" : " · heuristics"} · last ok{" "}
+              {status?.meta?.lastSuccessAt
+                ? new Date(status.meta.lastSuccessAt).toLocaleString()
+                : "—"}
+            </p>
           </div>
-          <p className={styles.metaLine}>
-            Open DMs for testers · {minds?.knownTesters ?? 0} known
-            {minds?.llmEnabled ? " · LLM on" : " · heuristic mode"} · Last success{" "}
-            {status?.meta?.lastSuccessAt
-              ? new Date(status.meta.lastSuccessAt).toLocaleString()
-              : "—"}
-          </p>
-        </div>
-      </header>
+          <div className={styles.heroVisual}>
+            <img
+              src="/showrunner-hero.png"
+              alt="ShowRunner — clapperboard Mind mark"
+            />
+          </div>
+        </header>
+      </div>
 
       <main className={styles.work} id="workbench">
+        <div className={styles.panel}>
         <div className={styles.sectionHead}>
           <div>
-            <h2>Workbench</h2>
-            <p>Pick a mode. Feed ShowRunner. Run. Continuity stays in memory.</p>
+            <h2>Console</h2>
+            <p>Choose a mode, feed context, run a cycle. Output and continuity stay here.</p>
           </div>
         </div>
 
@@ -285,8 +295,8 @@ export default function HomePage() {
 
             {!lastOutput ? (
               <p className={styles.empty}>
-                Nothing yet. Run {modeMeta.label.toLowerCase()} to see drafts, flags, and follow-ups
-                here — same trail Telegram testers get.
+                Nothing yet. Run {modeMeta.label.toLowerCase()} to see drafts and follow-ups —
+                same trail Telegram testers get.
               </p>
             ) : (
               <>
@@ -359,6 +369,7 @@ export default function HomePage() {
             </ul>
           </div>
         </section>
+        </div>
       </main>
 
       <footer className={styles.foot}>
