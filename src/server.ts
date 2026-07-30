@@ -60,6 +60,15 @@ function requireKey(
   return next();
 }
 
+app.get("/", (_req, res) => {
+  res.json({
+    ok: true,
+    product: "CreatorMind",
+    mind: config.mindsName ?? "ShowRunner",
+    health: "/api/health",
+  });
+});
+
 app.get("/api/health", (_req, res) => {
   res.json({
     ok: true,
@@ -205,11 +214,22 @@ app.use(
   },
 );
 
-app.listen(config.port, () => {
+process.on("unhandledRejection", (err) => {
+  console.error("[unhandledRejection]", err);
+});
+process.on("uncaughtException", (err) => {
+  console.error("[uncaughtException]", err);
+});
+
+app.listen(config.port, "0.0.0.0", () => {
   console.log(`CreatorMind API on :${config.port}`);
 });
 
 process.on("SIGINT", () => {
+  scheduler.stop();
+  process.exit(0);
+});
+process.on("SIGTERM", () => {
   scheduler.stop();
   process.exit(0);
 });

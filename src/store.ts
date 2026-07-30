@@ -83,7 +83,33 @@ export class Store {
       this.persist(fresh);
       return fresh;
     }
-    return JSON.parse(readFileSync(this.path, "utf8")) as DbShape;
+    try {
+      return JSON.parse(readFileSync(this.path, "utf8")) as DbShape;
+    } catch (err) {
+      console.error("[store] corrupt store.json — starting fresh backup", err);
+      try {
+        renameSync(this.path, `${this.path}.corrupt.${Date.now()}`);
+      } catch {
+        /* ignore */
+      }
+      const fresh: DbShape = {
+        profile: {
+          ...defaultProfile(),
+          displayName: this.config.mindsName ?? "ShowRunner",
+          mindsProfileUrl: this.config.mindsProfileUrl,
+          mindsId: this.config.mindsId,
+          mindsName: this.config.mindsName ?? "ShowRunner",
+          mindsEmail: this.config.mindsEmail,
+          telegramChatId: this.config.mindsNotifyChatId,
+        },
+        memory: [],
+        goals: [],
+        jobs: [],
+        meta: {},
+      };
+      this.persist(fresh);
+      return fresh;
+    }
   }
 
   private persist(db = this.db) {
