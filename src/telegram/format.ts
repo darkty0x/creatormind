@@ -32,7 +32,7 @@ export function welcomeMessage(webUrl?: string): string {
     "Or just send a note — I'll save it to memory.",
     site,
     "",
-    "<i>Open DMs for testers · drafts only until you approve publish</i>",
+    "<i>Open DMs for testers · drafts ready to copy & post</i>",
   ].join("\n");
 }
 
@@ -136,7 +136,7 @@ export function successRunMessage(opts: {
 
   parts.push(
     "",
-    "<i>Draft-only — nothing was published.</i>",
+    "<i>Drafts ready — copy from here or the web board to post.</i>",
   );
   if (opts.webUrl) {
     parts.push(`Full board: ${esc(opts.webUrl)}`);
@@ -197,7 +197,7 @@ export function digestMessage(opts: {
     "<b>Ready for you</b>",
     lines.join("\n") || "• Open the board for drafts",
     "",
-    "<i>Autonomous digest — drafts only</i>",
+    "<i>Autonomous digest — drafts ready for you</i>",
   ];
   if (opts.webUrl) parts.push(esc(opts.webUrl));
   return parts.join("\n");
