@@ -69,7 +69,18 @@ async function main() {
   await pw("eval", `[...document.querySelectorAll('button')].find(b=>/Repurpose/i.test(b.textContent||'') && (b.getAttribute('role')==='tab'))?.click()`);
   await sleep(2000);
   await pw("eval", `[...document.querySelectorAll('button')].find(b=>/Run Repurpose/i.test(b.textContent||''))?.click()`);
-  await sleep(14000);
+  // Web UI auto-retries cooldown; wait long enough for success drafts
+  await sleep(22000);
+  await pw(
+    "eval",
+    `(() => {
+      const out = document.querySelector('pre');
+      if (!out) {
+        [...document.querySelectorAll('button')].find(b=>/Run Repurpose/i.test(b.textContent||''))?.click();
+      }
+    })()`,
+  );
+  await sleep(12000);
   await pw("eval", "window.scrollTo({top: document.body.scrollHeight * 0.45, behavior:'smooth'})");
   await sleep(5000);
   await pw("eval", "window.scrollTo({top: document.body.scrollHeight * 0.72, behavior:'smooth'})");
