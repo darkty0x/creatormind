@@ -19,7 +19,7 @@ Production creator OS for **Creative Minds Jam #1** (Animoca Minds).
 | Autonomous follow-up | Cron scheduler + Telegram digests |
 | Creator-economy track fit | Repurpose / Growth / Moderation |
 | GitHub + docs | https://github.com/darkty0x/creatormind |
-| Demo video (1.5–2 min) | **Still needed** — record against Live URL |
+| Demo video (1.5–2 min) | https://github.com/darkty0x/creatormind/releases/download/v1.0.0/CreatorMind-ShowRunner-Submission.mp4 |
 | Live website | https://web-production-c0a0b2.up.railway.app |
 
 Official submit fields require **GitHub** + **Demo video**. Live site is strongly recommended for “working product / execution.”

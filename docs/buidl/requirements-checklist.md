@@ -9,7 +9,7 @@ Deadline: **2026-08-28 23:59 HKT**
 | Working product with Minds agent integral | ShowRunner linked; digests + product loop. Decide/act run in CreatorMind (LLM when `OPENAI_API_KEY` set). |
 | Persistence (memory / continuity / autonomous follow-up) | `/data` volume + goals/jobs/audit + scheduler |
 | Creator-economy track fit | Repurpose (submit) + Growth + Moderation |
-| Demo video 1.5–2 min | **Record against Live** (see `docs/demo-script.md`) |
+| Demo video 1.5–2 min | [Done](https://github.com/darkty0x/creatormind/releases/download/v1.0.0/CreatorMind-ShowRunner-Submission.mp4) |
 | Code repository + docs | https://github.com/darkty0x/creatormind |
 
 ## Live

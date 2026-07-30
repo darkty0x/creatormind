@@ -20,7 +20,7 @@ https://github.com/darkty0x/creatormind
 https://web-production-c0a0b2.up.railway.app
 
 **Demo video**
-(record next against Live URL)
+https://github.com/darkty0x/creatormind/releases/download/v1.0.0/CreatorMind-ShowRunner-Submission.mp4
 
 **Social**
 https://github.com/darkty0x
