@@ -79,10 +79,12 @@ export async function runCycle(opts: {
         store,
         {
           title: `ShowRunner · ${observation.mode}`,
-          body: `${output.summary}\n\n${output.drafts
-            .slice(0, 2)
-            .map((d) => `• ${d.channel}: ${d.title}`)
-            .join("\n")}`,
+          body: output.summary,
+          mode: observation.mode,
+          summary: output.summary,
+          draftLines: output.drafts
+            .slice(0, 3)
+            .map((d) => `${d.channel}: ${d.title}`),
         },
         { chatId: opts.notifyChatId },
       );

@@ -1,0 +1,110 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - paragraph [ref=e6]: ShowRunner
+          - paragraph [ref=e7]: CreatorMind · Animoca Minds
+        - navigation "Links" [ref=e8]:
+          - link "Code" [ref=e9] [cursor=pointer]:
+            - /url: https://github.com/darkty0x/creatormind
+          - link "Hackathon" [ref=e10] [cursor=pointer]:
+            - /url: https://dorahacks.io/hackathon/creativeminds
+          - link "Mind" [ref=e11] [cursor=pointer]:
+            - /url: https://app.hellominds.ai/?mindId=a130523e-f36b-1410-8465-00039ce7df11
+          - generic [ref=e12]: Live
+      - generic [ref=e14]:
+        - heading "Your creator ops Mind that remembers — and follows up." [level=1] [ref=e15]
+        - paragraph [ref=e16]: Repurpose, grow, and moderate from one persistent ShowRunner. Web and Telegram share memory. Drafts only until you approve publish.
+        - generic [ref=e17]:
+          - button "Open workbench" [ref=e18] [cursor=pointer]
+          - link "DM @showrunner_mind_bot" [ref=e19] [cursor=pointer]:
+            - /url: https://t.me/showrunner_mind_bot
+        - paragraph [ref=e20]: Open DMs for testers · 1 known · heuristic mode · Last success 7/30/2026, 3:57:04 PM
+    - main [ref=e21]:
+      - generic [ref=e23]:
+        - heading "Workbench" [level=2] [ref=e24]
+        - paragraph [ref=e25]: Pick a mode. Feed ShowRunner. Run. Continuity stays in memory.
+      - tablist "Modes" [ref=e26]:
+        - tab "Repurpose One piece → every channel" [selected] [ref=e27] [cursor=pointer]:
+          - generic [ref=e28]: Repurpose
+          - generic [ref=e29]: One piece → every channel
+        - tab "Growth Hooks, replies, next moves" [ref=e30] [cursor=pointer]:
+          - generic [ref=e31]: Growth
+          - generic [ref=e32]: Hooks, replies, next moves
+        - tab "Moderation Triage with your norms" [ref=e33] [cursor=pointer]:
+          - generic [ref=e34]: Moderation
+          - generic [ref=e35]: Triage with your norms
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - text: Goal title
+            - textbox "Goal title" [ref=e39]:
+              - /placeholder: What should ShowRunner own this week?
+              - text: Ship this week's multi-platform pack
+          - generic [ref=e40]:
+            - text: Source content
+            - textbox "Source content" [ref=e41]:
+              - /placeholder: Paste the long-form piece or brief…
+              - text: Most creators fail because they publish once and vanish. Consistency compounds when a system remembers what worked last week and follows up without being asked.
+          - generic [ref=e42]:
+            - button "Run Repurpose" [ref=e43] [cursor=pointer]
+            - button "Save goal only" [ref=e44] [cursor=pointer]
+        - generic [ref=e45]:
+          - heading "Output" [level=3] [ref=e47]
+          - paragraph [ref=e48]: Nothing yet. Run repurpose to see drafts, flags, and follow-ups here — same trail Telegram testers get.
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - heading "Memory" [level=3] [ref=e51]
+          - paragraph [ref=e52]: What ShowRunner keeps across sessions.
+          - list [ref=e53]:
+            - listitem [ref=e54]:
+              - strong [ref=e55]: note
+              - text: "— Goal created: Weekly multi-platform pack"
+            - listitem [ref=e56]:
+              - strong [ref=e57]: decision
+              - text: "— Continued goal \"Untitled goal\": Repurposed into 4 channel drafts (draft-only)."
+            - listitem [ref=e58]:
+              - strong [ref=e59]: content
+              - text: "— Repurposed claim: Post-audit: creators need a Mind that remembers last week and follows up."
+            - listitem [ref=e60]:
+              - strong [ref=e61]: decision
+              - text: — Publish blocked by policy — drafts only until ALLOW_AUTO_PUBLISH=1
+            - listitem [ref=e62]:
+              - strong [ref=e63]: content
+              - text: "— Repurposed claim: Live production smoke: creators need memory across sessions."
+            - listitem [ref=e64]:
+              - strong [ref=e65]: decision
+              - text: — Publish blocked by policy — drafts only until ALLOW_AUTO_PUBLISH=1
+        - generic [ref=e66]:
+          - heading "Audit" [level=3] [ref=e67]
+          - paragraph [ref=e68]: Real outcomes — success, blocked, failed.
+          - list [ref=e69]:
+            - listitem [ref=e70]:
+              - strong [ref=e71]: success
+              - text: · repurpose · Repurposed into 4 channel drafts (draft-only).
+            - listitem [ref=e72]:
+              - strong [ref=e73]: blocked
+              - text: · repurpose · Repurpose needs source content
+            - listitem [ref=e74]:
+              - strong [ref=e75]: blocked
+              - text: · repurpose · Repurpose needs source content
+            - listitem [ref=e76]:
+              - strong [ref=e77]: blocked
+              - text: · repurpose · Repurpose needs source content
+            - listitem [ref=e78]:
+              - strong [ref=e79]: success
+              - text: · repurpose · Repurposed into 4 channel drafts (draft-only).
+    - contentinfo [ref=e80]:
+      - paragraph [ref=e81]:
+        - text: Mind
+        - link "ShowRunner" [ref=e82] [cursor=pointer]:
+          - /url: https://app.hellominds.ai/?mindId=a130523e-f36b-1410-8465-00039ce7df11
+        - text: ·
+        - link "GitHub" [ref=e83] [cursor=pointer]:
+          - /url: https://github.com/darkty0x/creatormind
+        - text: · open DMs on
+        - link "@showrunner_mind_bot" [ref=e84] [cursor=pointer]:
+          - /url: https://t.me/showrunner_mind_bot
+        - text: · Creative Minds Jam
+  - alert [ref=e85]

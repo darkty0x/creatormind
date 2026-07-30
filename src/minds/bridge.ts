@@ -1,5 +1,7 @@
 import type { AppConfig } from "../types.js";
 import type { Store } from "../store.js";
+import { digestMessage } from "../telegram/format.js";
+import type { Mode } from "../types.js";
 
 async function sendTelegram(
   config: AppConfig,
@@ -14,7 +16,7 @@ async function sendTelegram(
       body: JSON.stringify({
         chat_id: chatId,
         text,
-        parse_mode: "Markdown",
+        parse_mode: "HTML",
         disable_web_page_preview: true,
       }),
     },
@@ -29,11 +31,28 @@ async function sendTelegram(
 export async function notifyMind(
   config: AppConfig,
   store: Store,
-  payload: { title: string; body: string },
+  payload: {
+    title: string;
+    body: string;
+    mode?: Mode;
+    summary?: string;
+    draftLines?: string[];
+  },
   opts?: { chatId?: string },
 ) {
   const profile = store.getProfile();
-  const text = `*${payload.title}*\n\n${payload.body}\n\n_ShowRunner (Animoca Mind) · CreatorMind digest_`;
+  const text =
+    payload.mode && payload.summary
+      ? digestMessage({
+          mode: payload.mode,
+          summary: payload.summary,
+          draftLines: payload.draftLines ?? [],
+          webUrl: config.publicWebUrl,
+        })
+      : `<b>${payload.title.replace(/[<>&]/g, "")}</b>\n\n${payload.body
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")}`;
 
   const targets = opts?.chatId
     ? [opts.chatId]
