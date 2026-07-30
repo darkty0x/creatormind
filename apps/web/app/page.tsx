@@ -104,14 +104,32 @@ export default function HomePage() {
         commentsSnapshot:
           mode === "moderation" || mode === "growth" ? comments : undefined,
       });
-      const result = await runCycle({
+
+      let result = await runCycle({
         mode,
         sourceContent: source,
         commentsSnapshot: comments,
         trigger: "web",
         notify: true,
       });
-      setLastOutput(result.output);
+
+      // Auto-retry once if the only issue is a short cooldown (scheduler may have just run).
+      const blockedReason = String(result.audit?.error ?? "");
+      if (result.audit?.outcome === "blocked" && /Cooldown/i.test(blockedReason)) {
+        const secs = Number(blockedReason.match(/(\d+)s/)?.[1] ?? 5);
+        await new Promise((r) => setTimeout(r, (secs + 1) * 1000));
+        result = await runCycle({
+          mode,
+          sourceContent: source,
+          commentsSnapshot: comments,
+          trigger: "web",
+          notify: true,
+        });
+      }
+
+      if (result.output) {
+        setLastOutput(result.output);
+      }
       setLastOutcome(result.audit?.outcome ?? null);
       await refresh();
       if (result.audit?.outcome !== "success") {

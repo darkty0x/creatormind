@@ -37,6 +37,10 @@ export function startScheduler(config: AppConfig, store: Store) {
       );
     if (recent) return;
 
+    // Don't spam audit with blocked "needs source" from incomplete goals.
+    if (goal.mode === "repurpose" && !goal.sourceContent?.trim()) return;
+    if (goal.mode === "moderation" && !goal.commentsSnapshot?.trim()) return;
+
     try {
       const result = await runCycle({
         config,
@@ -44,6 +48,8 @@ export function startScheduler(config: AppConfig, store: Store) {
         trigger: "scheduler",
         goalId: goal.id,
         mode: goal.mode,
+        sourceContent: goal.sourceContent,
+        commentsSnapshot: goal.commentsSnapshot,
         notify: true,
       });
       if (result.audit.outcome === "success") {

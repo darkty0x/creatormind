@@ -18,7 +18,7 @@ export function checkPolicy(
     reasons.push(`Rate limit: ${config.maxJobsPerHour} jobs/hour`);
   }
 
-  const last = store.meta().lastCycleAt;
+  const last = store.meta().lastSuccessAt;
   if (last) {
     const elapsed = (Date.now() - Date.parse(last)) / 1000;
     if (elapsed < config.cooldownSeconds) {

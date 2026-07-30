@@ -46,7 +46,7 @@ export async function runCycle(opts: {
       rationale: decision.rationale,
       error: policy.reasons.join("; "),
     });
-    store.markCycle(undefined, false);
+    // Do not bump cooldown clocks on blocked attempts.
     return { observation, decision, policy, job, audit, output: null };
   }
 
