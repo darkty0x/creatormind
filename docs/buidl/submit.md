@@ -26,7 +26,7 @@ https://github.com/darkty0x/creatormind/releases/download/v1.0.0/CreatorMind-Sho
 https://github.com/darkty0x
 
 **Animoca Mind**
-ShowRunner — https://app.hellominds.ai/?mindId=a130523e-f36b-1410-8465-00039ce7df11
+ShowRunner — https://hellominds.ai/profile/minds/a130523e-f36b-1410-8465-00039ce7df11
 
 ## Team information
 
@@ -40,5 +40,5 @@ Content repurposing across platforms (product also ships growth + moderation as 
 
 Web: https://web-production-c0a0b2.up.railway.app  
 API: https://api-production-428c.up.railway.app/api/health  
-Telegram: https://t.me/showrunner_mind_bot  
-Mind: https://app.hellominds.ai/?mindId=a130523e-f36b-1410-8465-00039ce7df11
+Telegram: https://t.me/ShowRunner_CMind_Bot  
+Mind: https://hellominds.ai/profile/minds/a130523e-f36b-1410-8465-00039ce7df11

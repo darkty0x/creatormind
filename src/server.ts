@@ -186,7 +186,7 @@ async function registerTelegramWebhook() {
 if (bot) {
   if (process.env.TELEGRAM_POLLING === "1") {
     bot.start({
-      onStart: () => console.log("[telegram] polling as @showrunner_mind_bot"),
+      onStart: () => console.log("[telegram] polling as @ShowRunner_CMind_Bot"),
     });
   } else {
     app.post(

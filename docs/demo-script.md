@@ -14,7 +14,7 @@ Record against **Live** URLs only.
 4. **Repurpose** — paste source → Run → drafts + Copy  
 5. **Growth / Moderation** — switch modes briefly  
 6. **Persistence** — Memory + Audit trail (continuity)  
-7. **Telegram** — @showrunner_mind_bot open DMs for testers  
+7. **Telegram** — @ShowRunner_CMind_Bot open DMs for testers  
 8. **Close** — GitHub + Live web + HelloMinds ShowRunner  
 
 ## Record

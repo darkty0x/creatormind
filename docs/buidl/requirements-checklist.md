@@ -16,8 +16,8 @@ Deadline: **2026-08-28 23:59 HKT**
 
 - Web: https://web-production-c0a0b2.up.railway.app  
 - API: https://api-production-428c.up.railway.app  
-- Telegram: https://t.me/showrunner_mind_bot  
-- Mind: https://app.hellominds.ai/?mindId=a130523e-f36b-1410-8465-00039ce7df11  
+- Telegram: https://t.me/ShowRunner_CMind_Bot  
+- Mind: https://hellominds.ai/profile/minds/a130523e-f36b-1410-8465-00039ce7df11  
 
 ## Honest notes for judges
 

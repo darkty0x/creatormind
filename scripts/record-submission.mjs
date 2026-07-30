@@ -74,13 +74,13 @@ async function main() {
   await sleep(5000);
   await pw("eval", "window.scrollTo({top: document.body.scrollHeight * 0.72, behavior:'smooth'})");
   await sleep(5000);
-  await card("Telegram", "Open DMs · @showrunner_mind_bot · shared memory with the console", 5);
+  await card("Telegram", "Open DMs · @ShowRunner_CMind_Bot · shared memory with the console", 5);
   await pw(
     "eval",
     `(() => {
       const el = document.getElementById('hack-card');
       if (!el) return;
-      el.innerHTML = '<div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1aa8b5;font-weight:600;font-family:IBM Plex Mono,monospace">Submit</div><div style="font-size:40px;font-weight:700;color:#fff;margin:8px 0 18px;letter-spacing:-.03em">CreatorMind / ShowRunner</div><div style="font-size:17px;color:rgba(232,238,246,.75);line-height:1.75;text-align:left">web-production-c0a0b2.up.railway.app<br/>github.com/darkty0x/creatormind<br/>t.me/showrunner_mind_bot<br/>HelloMinds · ShowRunner</div>';
+      el.innerHTML = '<div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1aa8b5;font-weight:600;font-family:IBM Plex Mono,monospace">Submit</div><div style="font-size:40px;font-weight:700;color:#fff;margin:8px 0 18px;letter-spacing:-.03em">CreatorMind / ShowRunner</div><div style="font-size:17px;color:rgba(232,238,246,.75);line-height:1.75;text-align:left">web-production-c0a0b2.up.railway.app<br/>github.com/darkty0x/creatormind<br/>t.me/ShowRunner_CMind_Bot<br/>HelloMinds · ShowRunner</div>';
     })()`,
   );
   await sleep(7000);

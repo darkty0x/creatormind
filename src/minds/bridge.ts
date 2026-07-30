@@ -98,15 +98,15 @@ export function mindsStatus(config: AppConfig, store: Store) {
     linked,
     operational: linked && (notifyReady || Boolean(config.openaiApiKey)),
     name: profile.mindsName ?? config.mindsName ?? "ShowRunner",
-    id: profile.mindsId ?? config.mindsId ?? null,
-    profileUrl: profile.mindsProfileUrl ?? config.mindsProfileUrl ?? null,
+    id: config.mindsId ?? profile.mindsId ?? null,
+    profileUrl: config.mindsProfileUrl ?? profile.mindsProfileUrl ?? null,
     email: profile.mindsEmail ?? config.mindsEmail ?? null,
     openDm: config.telegramAllowedChatIds.length === 0,
     knownTesters: chats.length,
     notifyChatId: config.mindsNotifyChatId ?? profile.telegramChatId ?? null,
-    bot: "@showrunner_mind_bot",
+    bot: "@ShowRunner_CMind_Bot",
     llmEnabled: Boolean(config.openaiApiKey),
     setup:
-      "ShowRunner Mind linked. Testers DM @showrunner_mind_bot (/start, /run). Digests + memory live in CreatorMind.",
+      "ShowRunner Mind linked. Testers DM @ShowRunner_CMind_Bot (/start, /run). Digests + memory live in CreatorMind.",
   };
 }

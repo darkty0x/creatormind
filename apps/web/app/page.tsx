@@ -64,7 +64,7 @@ export default function HomePage() {
   const modeMeta = MODE_META[mode];
 
   const telegramHref = useMemo(
-    () => "https://t.me/showrunner_mind_bot",
+    () => "https://t.me/ShowRunner_CMind_Bot",
     [],
   );
 
@@ -163,7 +163,10 @@ export default function HomePage() {
               Jam
             </a>
             <a
-              href={minds?.profileUrl ?? "https://app.hellominds.ai"}
+              href={
+                minds?.profileUrl ??
+                "https://hellominds.ai/profile/minds/a130523e-f36b-1410-8465-00039ce7df11"
+              }
               target="_blank"
               rel="noreferrer"
             >
@@ -384,7 +387,7 @@ export default function HomePage() {
           </a>{" "}
           · open DMs on{" "}
           <a href={telegramHref} target="_blank" rel="noreferrer">
-            @showrunner_mind_bot
+            @ShowRunner_CMind_Bot
           </a>{" "}
           · Creative Minds Jam
         </p>

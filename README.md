@@ -2,10 +2,10 @@
 
 Production creator OS for **Creative Minds Jam #1** (Animoca Minds).
 
-**Mind:** [ShowRunner](https://app.hellominds.ai/?mindId=a130523e-f36b-1410-8465-00039ce7df11)  
+**Mind:** [ShowRunner](https://hellominds.ai/profile/minds/a130523e-f36b-1410-8465-00039ce7df11)  
 **Live web:** https://web-production-c0a0b2.up.railway.app  
 **Live API:** https://api-production-428c.up.railway.app  
-**Telegram (open DM):** [@showrunner_mind_bot](https://t.me/showrunner_mind_bot)  
+**Telegram (open DM):** [@ShowRunner_CMind_Bot](https://t.me/ShowRunner_CMind_Bot)  
 **Hackathon:** https://dorahacks.io/hackathon/creativeminds  
 **GitHub:** https://github.com/darkty0x/creatormind  
 
